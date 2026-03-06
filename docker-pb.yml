@@ -1,0 +1,31 @@
+- name: Install docker
+  hosts: test
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: update repos
+      apt:
+        update_cache: yes
+    - name: install docker dependences
+      apt:
+        name:
+          - ca-certificates
+          - curl
+        state: present
+    - name: add docker repo key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+    - name: add docker to sources.list.d
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+    - name: install docker
+      apt:
+        name: docker-ce
+        state: present
+    - name: launch docker
+      systemd:
+        name: docker 
+        enabled: yes
+        state: started
