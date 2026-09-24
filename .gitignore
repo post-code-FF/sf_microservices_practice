@@ -4,3 +4,11 @@ key.json
 .terraform.lock.hcl
 .terraform.tfstate
 .terraform.tfstate.backup
+.DS_Store
+._*
+*.swp
+*.swo
+__pycache__/
+*.pyc
+*.tfstate
+*.tfstate.*
